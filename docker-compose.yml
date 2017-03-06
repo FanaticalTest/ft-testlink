@@ -1,0 +1,32 @@
+# SK
+
+web:
+  container_name: php_webserver
+  build: .
+  ports:
+   - 80:80
+  volumes:
+   - /var/www/html/
+db:
+  image: mysql:5.7
+  container_name: mysql
+  volumes:
+   - /var/lib/mysql
+  restart: always
+  ports:
+   - 3306:3306
+  environment:
+   MYSQL_ROOT_PASSWORD: testlink
+   MYSQL_DATABASE: testlink
+   MYSQL_USER: testlink
+   MYSQL_PASSWORD: testlink
+phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  container_name: phpmyadmin
+  environment:
+   - PMA_ARBITRARY=1
+  restart: always
+  ports:
+   - 8081:80
+  volumes:
+   - /sessions
